@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Explore"
+        android:icon="@drawable/round_explore_24"
+        android:id="@+id/explore"/>
+    <item android:title="Search"
+        android:icon="@drawable/round_travel_explore_24"
+        android:id="@+id/search"/>
+    <item android:title="Map"
+        android:icon="@drawable/round_map_24"
+        android:id="@+id/map"/>
+    <item android:title="Favourites"
+        android:icon="@drawable/round_favorite_border_24"
+        android:id="@+id/favourite"/>
+    <item android:title="Profile"
+        android:icon="@drawable/round_person_outline_24"
+        android:id="@+id/profile"/>
+</menu>

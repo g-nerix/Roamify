@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
+//                startActivity(new Intent(getApplicationContext(), Second_Page.class)); mine
 //                Intent i = new Intent(MainActivity.this, HomeScreen.class);
 //                startActivity(i);
 //                finish();

@@ -67,6 +67,9 @@ public class Main_search extends AsyncTask<Void, Void, String>
         {
             url = new URL(API_link);
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("accept", "application/json");
+            urlConnection.setRequestProperty("Authorization", "fsq3WrI8VuFGnlBez+qYhzN42bUEGOxQ/B1q+o1rt2MGFCU=");
             int response_code = urlConnection.getResponseCode();
             if(response_code != 200)
             {

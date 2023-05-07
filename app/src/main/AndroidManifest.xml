@@ -24,10 +24,10 @@
             android:name=".signUp"
             android:exported="false" />
         <activity
-            android:name=".HomeScreen"
+            android:name=".Second_Page"
             android:exported="false" />
         <activity
-            android:name=".Second_Page"
+            android:name=".HomeScreen"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity
     EditText Location_edit_text;
     final String API_key = "5ae2e3f221c38a28845f05b6a91332a87694c022a5bfe17fff46a616";
     final String original_API_link = "https://api.opentripmap.com/0.1/en/places/";
-    Button search_button;
     private String country;
     private double latitude, longitude;
 

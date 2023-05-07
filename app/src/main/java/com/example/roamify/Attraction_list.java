@@ -68,14 +68,17 @@ public class Attraction_list extends AppCompatActivity
         }
         @Override
         public void onBindViewHolder(ButtonViewHolder holder, int position) {
+            //Button ImgButton = itemView.findViewById(R.id.imageButton);
             String value = types_options.get(position);
             holder.button.setText(value);
+
             holder.button.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
                 {
-                    Intent explicit_intent = new Intent(getApplicationContext(), Attraction_page.class);
+                    Intent explicit_intent = new Intent(getApplicationContext(), MapFragment.class);
+                    explicit_intent.putExtra("name", value);
                     explicit_intent.putExtra("longitude", lon_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("latitude", lat_options.get(types_options.indexOf(value)));
                     startActivity(explicit_intent);
@@ -89,12 +92,12 @@ public class Attraction_list extends AppCompatActivity
         }
         public class ButtonViewHolder extends RecyclerView.ViewHolder {
             public Button button;
-            public Button ImgButton;
+            //public Button ImgButton;
 
             public ButtonViewHolder(View itemView) {
                 super(itemView);
                 button = itemView.findViewById(R.id.button);
-                //ImgButton = itemView.findViewById(R.id.imageButton);
+
             }
         }
     }

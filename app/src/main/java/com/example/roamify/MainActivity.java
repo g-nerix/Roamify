@@ -8,8 +8,8 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity
 
 
     /// Sarthak's stupidity starts
-    FirebaseAuth auth;
-    FirebaseUser user;
+//    FirebaseAuth auth;
+//    FirebaseUser user;
 
     /// Sarthak's stupidity ends
 
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity
 
 
         // Sarthak's stupidity
-        auth= FirebaseAuth.getInstance();
-        user= auth.getCurrentUser();
+//        auth= FirebaseAuth.getInstance();
+//        user= auth.getCurrentUser();
 
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -45,28 +45,28 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-//                startActivity(new Intent(getApplicationContext(), Second_Page.class)); mine
-//                Intent i = new Intent(MainActivity.this, HomeScreen.class);
-//                startActivity(i);
-//                finish();
-
-                if( user==null){
-//                    profile.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-                            startActivity(new Intent(getApplicationContext(), Login.class));
-//                        }
-//                    });
-                }
-                else{
-//                    profile.setText(user.getEmail().substring(0,5));
-//                    profile.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-                            startActivity(new Intent(getApplicationContext(), HomeScreen.class));
-//                        }
-//                    });
-                }
+                startActivity(new Intent(getApplicationContext(), Second_Page.class));
+////                Intent i = new Intent(MainActivity.this, HomeScreen.class);
+////                startActivity(i);
+////                finish();
+//
+//                if( user==null){
+////                    profile.setOnClickListener(new View.OnClickListener() {
+////                        @Override
+////                        public void onClick(View view) {
+//                            startActivity(new Intent(getApplicationContext(), Login.class));
+////                        }
+////                    });
+//                }
+//                else{
+////                    profile.setText(user.getEmail().substring(0,5));
+////                    profile.setOnClickListener(new View.OnClickListener() {
+////                        @Override
+////                        public void onClick(View view) {
+//                            startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+////                        }
+////                    });
+//                }
             }
         }, 2000);
     }

@@ -11,13 +11,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
+//import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPassword extends AppCompatActivity {
 
-    FirebaseAuth firebaseAuth;
+//    FirebaseAuth firebaseAuth;
 
     EditText email_forgot;
     Button resetPassword;
@@ -32,7 +32,7 @@ public class ForgotPassword extends AppCompatActivity {
         resetPassword= findViewById(R.id.reset_password);
         progressBarForgot= findViewById(R.id.progressBar_forgot);
 
-        firebaseAuth= FirebaseAuth.getInstance();
+//        firebaseAuth= FirebaseAuth.getInstance();
 
         resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,15 +64,15 @@ public class ForgotPassword extends AppCompatActivity {
 
         progressBarForgot.setVisibility(View.VISIBLE);
 
-        firebaseAuth.sendPasswordResetEmail(inputted_email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-
-                if( task.isSuccessful()==true){
-                    Toast.makeText(ForgotPassword.this, "Please check your email to reset your password.", Toast.LENGTH_SHORT).show();
-                }
-                else Toast.makeText(ForgotPassword.this, "Email resetting email couldn't be sent...", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        firebaseAuth.sendPasswordResetEmail(inputted_email).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//
+//                if( task.isSuccessful()==true){
+//                    Toast.makeText(ForgotPassword.this, "Please check your email to reset your password.", Toast.LENGTH_SHORT).show();
+//                }
+//                else Toast.makeText(ForgotPassword.this, "Email resetting email couldn't be sent...", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 }

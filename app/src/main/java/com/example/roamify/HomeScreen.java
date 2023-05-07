@@ -1,6 +1,5 @@
 package com.example.roamify;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,7 +7,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -21,8 +19,10 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class HomeScreen extends AppCompatActivity {
+public class HomeScreen extends AppCompatActivity implements ExploreFragment.Button_click
+{
 
     BottomNavigationView btm_nav;
 
@@ -40,9 +40,7 @@ public class HomeScreen extends AppCompatActivity {
         value_received_from_previous_activity = getIntent();
         place = value_received_from_previous_activity.getStringExtra("place");
         btm_nav = findViewById(R.id.btm_nav);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,exploreFragment).commit();
-
 
         btm_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -74,23 +72,50 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void Button_click(String type)
+    {
+        String base_query = "https://api.foursquare.com/v3/places/search?fields=name%2Cgeocodes%2Clocation%2Cphotos%2Cprice%2Crating%2Cfeatures%2Ctel&limit=10&accept=application/json&Authorization=fsq3WrI8VuFGnlBez+qYhzN42bUEGOxQ/B1q+o1rt2MGFCU=";
+        base_query += String.format("&near=%s",place);
+        base_query+=String.format("&query=%s",type);
+        System.out.println(base_query);
+        Search myTask=new Search(getApplicationContext(),base_query);
+        myTask.execute();
+//        if(type == "Hotel")
+//        {
+//            base_query
+//        }
+//        if(type == "Shop")
+//        {
+//
+//        }
+//        if(type == "Restaurant")
+//        {
+//
+//        }
+//        if(type == "Attraction")
+//        {
+//
+//        }
+    }
 }
 class Search extends AsyncTask<Void, Void, String>
 {
+
     private Context context;
     private String API;
-    private String place;
 
-    public Search(Context context,String API,String place)
+    public Search(Context context,String API)
     {
         this.context = context;
         this.API = API;
-        this.place = place;
     }
     @Override
     protected String doInBackground(Void... voids)
     {
         String text_from_API = return_api_response(API);
+        System.out.println(text_from_API);
         if(text_from_API == null)
         {
             return null;
@@ -101,17 +126,24 @@ class Search extends AsyncTask<Void, Void, String>
     @Override
     protected void onPostExecute (String my_string)
     {
-        if(my_string != null)
-        {
-            Intent explicit_intent = new Intent(context, HomeScreen.class);
-            explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            explicit_intent.putExtra("Place",place);
-            context.startActivity(explicit_intent);
-        }
-        else
-        {
-            Toast.makeText(context,"Place not found",Toast.LENGTH_SHORT).show();
-        }
+        ArrayList<Atrraction_description> arr = new ArrayList<>();
+        arr.add(new Atrraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
+        Intent explicit_intent = new Intent(context, Attraction_list.class);
+        explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        explicit_intent.putExtra("object_list", arr);
+
+        context.startActivity(explicit_intent);
+//        if(my_string != null)
+//        {
+//            Intent explicit_intent = new Intent(context, HomeScreen.class);
+//            explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            explicit_intent.putExtra("Place",place);
+//            context.startActivity(explicit_intent);
+//        }
+//        else
+//        {
+//            Toast.makeText(context,"Place not found",Toast.LENGTH_SHORT).show();
+//        }
     }
     public String return_api_response(String API_link)
     {
@@ -123,7 +155,6 @@ class Search extends AsyncTask<Void, Void, String>
             url = new URL(API_link);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setRequestProperty("accept", "application/json");
             urlConnection.setRequestProperty("Authorization", "fsq3WrI8VuFGnlBez+qYhzN42bUEGOxQ/B1q+o1rt2MGFCU=");
             int response_code = urlConnection.getResponseCode();
             if(response_code != 200)

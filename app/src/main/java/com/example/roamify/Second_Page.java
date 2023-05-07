@@ -36,8 +36,6 @@ public class Second_Page extends AppCompatActivity
 {
     String Location_string;
     EditText Location_edit_text;
-    final String API_key = "5ae2e3f221c38a28845f05b6a91332a87694c022a5bfe17fff46a616";
-    final String original_API_link = "https://api.opentripmap.com/0.1/en/places/";
     ImageButton search_button;
     private String country;
     private double latitude, longitude;
@@ -72,7 +70,7 @@ public class Second_Page extends AppCompatActivity
                     boolean check_connection = net_info != null && net_info.isConnected();
                     if(check_connection == true)
                     {
-                        String API_link = String.format("https://api.foursquare.com/v3/places/search?near=%s",Location_string,API_key);
+                        String API_link = String.format("https://api.foursquare.com/v3/places/search?near=%s",Location_string);
                         Main_search myTask=new Main_search(getApplicationContext(),API_link,Location_string);
                         myTask.execute();
                     }

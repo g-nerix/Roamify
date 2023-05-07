@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), Second_Page.class));
                                     finish();
 
                                 } else {

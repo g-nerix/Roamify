@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class Second_Page extends AppCompatActivity
 {
     String Location_string;
-    EditText Location_edit_text;
+    SearchView Location_edit_text;
     ImageButton search_button;
     private String country;
     private double latitude, longitude;
@@ -89,44 +89,4 @@ public class Second_Page extends AppCompatActivity
             }
         });
     }
-//    public void set_button_listener()
-//    {
-//        search_button = (ImageButton)  findViewById(R.id.Search_button);
-//        search_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Location_edit_text = (EditText) findViewById(R.id.location);
-//                Location_string = Location_edit_text.getText().toString();
-//                int flag = 0;
-//                for (int i = 0; i < Location_string.length(); i++) {
-//                    if (Character.isLetter(Location_string.charAt(i)) == false)
-//                    {
-//                        flag = -1;
-//                        break;
-//                    }
-//                }
-//                if(flag == 0)
-//                {
-//                    ConnectivityManager connectivity_manager = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-//                    NetworkInfo net_info = connectivity_manager.getActiveNetworkInfo();
-//                    boolean check_connection = net_info != null && net_info.isConnected();
-//                    if(check_connection == true)
-//                    {
-//                        String API_link = String.format("https://api.foursquare.com/v3/places/search?near=%s",Location_string);
-//                        Main_search myTask=new Main_search(getApplicationContext(),API_link,Location_string);
-//                        myTask.execute();
-//                    }
-//                    else
-//                    {
-//                        Toast.makeText(getApplicationContext(),"Connection error",Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//                if(flag == -1)
-//                {
-//                    Toast.makeText(getApplicationContext(),"Invalid input",Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
 }

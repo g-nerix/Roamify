@@ -16,15 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="125dp"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/ic_menu_crop" />
+            app:srcCompat="@drawable/round_travel_explore_24" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
             android:text="Button" />
     </LinearLayout>

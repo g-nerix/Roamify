@@ -196,7 +196,7 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
     @Override
     protected void onPostExecute (ArrayList<Attraction_description> arr)
     {
-        arr.add(new Attraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
+        //arr.add(new Attraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
         Intent explicit_intent = new Intent(context, Attraction_list.class);
         explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         explicit_intent.putExtra("object_list", arr);

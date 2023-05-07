@@ -5,12 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Attraction_list extends AppCompatActivity
@@ -68,19 +73,24 @@ public class Attraction_list extends AppCompatActivity
         }
         @Override
         public void onBindViewHolder(ButtonViewHolder holder, int position) {
-            //Button ImgButton = itemView.findViewById(R.id.imageButton);
+            ImageView img = findViewById(R.id.imageView);
             String value = types_options.get(position);
             holder.button.setText(value);
+
+            //new LoadImage(img).execute(photo_url_options.get(position));
 
             holder.button.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
                 {
-                    Intent explicit_intent = new Intent(getApplicationContext(), MapFragment.class);
+                    Intent explicit_intent = new Intent(getApplicationContext(), Attraction_page.class);
                     explicit_intent.putExtra("name", value);
+                    explicit_intent.putExtra("URL",photo_url_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("longitude", lon_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("latitude", lat_options.get(types_options.indexOf(value)));
+                    explicit_intent.putExtra("rating",rating_options.get(types_options.indexOf(value)));
+                    explicit_intent.putExtra("contact",contact_options.get(types_options.indexOf(value)));
                     startActivity(explicit_intent);
                 }
             });
@@ -92,7 +102,6 @@ public class Attraction_list extends AppCompatActivity
         }
         public class ButtonViewHolder extends RecyclerView.ViewHolder {
             public Button button;
-            //public Button ImgButton;
 
             public ButtonViewHolder(View itemView) {
                 super(itemView);

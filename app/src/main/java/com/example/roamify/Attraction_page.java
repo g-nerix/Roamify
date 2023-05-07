@@ -1,6 +1,7 @@
 package com.example.roamify;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +48,10 @@ public class Attraction_page extends AppCompatActivity {
                 Intent explicit_intent = new Intent(getApplicationContext(), MapFragment.class);
                 explicit_intent.putExtra("longitude", lon);
                 explicit_intent.putExtra("latitude", lat);
+                MapFragment fragment = new MapFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, fragment);
+                transaction.commit();
             }
         });
     }

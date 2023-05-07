@@ -11,7 +11,12 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,7 +43,7 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         value_received_from_previous_activity = getIntent();
-        place = value_received_from_previous_activity.getStringExtra("place");
+        place = value_received_from_previous_activity.getStringExtra("Place");
         btm_nav = findViewById(R.id.btm_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,exploreFragment).commit();
 
@@ -76,31 +81,15 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     @Override
     public void Button_click(String type)
     {
-        String base_query = "https://api.foursquare.com/v3/places/search?fields=name%2Cgeocodes%2Clocation%2Cphotos%2Cprice%2Crating%2Cfeatures%2Ctel&limit=10&accept=application/json&Authorization=fsq3WrI8VuFGnlBez+qYhzN42bUEGOxQ/B1q+o1rt2MGFCU=";
+        String base_query = "https://api.foursquare.com/v3/places/search?fields=name%2Cgeocodes%2Clocation%2Cphotos%2Cprice%2Crating%2Cfeatures%2Ctel&limit=5";
         base_query += String.format("&near=%s",place);
         base_query+=String.format("&query=%s",type);
         System.out.println(base_query);
         Search myTask=new Search(getApplicationContext(),base_query);
         myTask.execute();
-//        if(type == "Hotel")
-//        {
-//            base_query
-//        }
-//        if(type == "Shop")
-//        {
-//
-//        }
-//        if(type == "Restaurant")
-//        {
-//
-//        }
-//        if(type == "Attraction")
-//        {
-//
-//        }
     }
 }
-class Search extends AsyncTask<Void, Void, String>
+class Search extends AsyncTask<Void, Void, ArrayList<Atrraction_description>>
 {
 
     private Context context;
@@ -112,7 +101,7 @@ class Search extends AsyncTask<Void, Void, String>
         this.API = API;
     }
     @Override
-    protected String doInBackground(Void... voids)
+    protected ArrayList<Atrraction_description> doInBackground(Void... voids)
     {
         String text_from_API = return_api_response(API);
         System.out.println(text_from_API);
@@ -120,17 +109,62 @@ class Search extends AsyncTask<Void, Void, String>
         {
             return null;
         }
-        return "Not none";
+        JSONArray json_arr_accommodation;
+        ArrayList<Atrraction_description> tourist_object_list = new ArrayList<>();
+        try
+        {
+            JSONObject json_obj = new JSONObject(text_from_API);
+            json_arr_accommodation = json_obj.getJSONArray("results");
+            for (int i = 0; i < json_arr_accommodation.length(); i++) {
+                JSONObject accommodation_obj = json_arr_accommodation.getJSONObject(i);
+                String name = accommodation_obj.getString("name");
+
+                JSONObject location_obj = accommodation_obj.getJSONObject("location");
+                String formatted_address = location_obj.getString("formatted_address");
+
+                JSONObject main_geocodes_obj = accommodation_obj.getJSONObject("geocodes").getJSONObject("main");
+                float latitude = (float) main_geocodes_obj.getDouble("latitude");
+                float longitude = (float) main_geocodes_obj.getDouble("longitude");
+
+                JSONArray photos_arr = accommodation_obj.getJSONArray("photos");
+                String photo_url = "";
+                if (photos_arr.length() > 0) {
+                    JSONObject photo_obj = photos_arr.getJSONObject(0);
+                    photo_url = photo_obj.getString("prefix") + photo_obj.getString("suffix");
+                }
+
+//                JSONArray features_arr = accommodation_obj.getJSONArray("features");
+//                String feature = "";
+//                if (features_arr.length() > 0) {
+//                    feature = features_arr.getString(0);
+//                }
+                Atrraction_description Atrraction_description_obj = new Atrraction_description(name,formatted_address,photo_url,"abcd",latitude,longitude, (float) 5.6,"","");
+                tourist_object_list.add(Atrraction_description_obj);
+            }
+        } catch (JSONException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return tourist_object_list;
     }
 
+//    private Atrraction_description json_obj_parser(JSONObject json_obj) throws JSONException
+//    {
+////        String name = json_obj.getString("name");
+////        JSONObject point= json_obj.getJSONObject("point");
+////        double latitude = point.getDouble("lat");
+////        double longitude = point.getDouble("lon");
+//        return new Atrraction_description(name,latitude,longitude);
+//    }
+
     @Override
-    protected void onPostExecute (String my_string)
+    protected void onPostExecute (ArrayList<Atrraction_description> arr)
     {
-        ArrayList<Atrraction_description> arr = new ArrayList<>();
+        ArrayList<Atrraction_description> arr_second = new ArrayList<>();
         arr.add(new Atrraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
         Intent explicit_intent = new Intent(context, Attraction_list.class);
         explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        explicit_intent.putExtra("object_list", arr);
+        explicit_intent.putExtra("object_list", arr_second);
 
         context.startActivity(explicit_intent);
 //        if(my_string != null)
@@ -162,11 +196,18 @@ class Search extends AsyncTask<Void, Void, String>
                 return null;
             }
             InputStream in_stream = new BufferedInputStream(urlConnection.getInputStream());
-            Reader reader = null;
-            reader = new InputStreamReader(in_stream, "UTF-8");
-            char[] buffer = new char[1000000];
-            reader.read(buffer);
-            text_from_API = new String(buffer);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in_stream, "UTF-8"));
+            char[] buffer = new char[4096]; // read input in chunks of 4KB
+            StringBuilder stringBuilder = new StringBuilder();
+            int bytesRead;
+            while ((bytesRead = reader.read(buffer)) != -1) {
+                stringBuilder.append(buffer, 0, bytesRead);
+                if (stringBuilder.length() >= 20000000) {
+                    // terminate reading if the input reaches the maximum length
+                    break;
+                }
+            }
+            text_from_API = stringBuilder.toString();
         }
         catch (UnsupportedEncodingException e)
         {

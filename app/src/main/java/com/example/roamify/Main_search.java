@@ -36,6 +36,7 @@ public class Main_search extends AsyncTask<Void, Void, String>
     protected String doInBackground(Void... voids)
     {
         String text_from_API = return_api_response(API);
+        System.out.println(text_from_API);
         if(text_from_API == null)
         {
             return null;
@@ -50,7 +51,7 @@ public class Main_search extends AsyncTask<Void, Void, String>
         {
             Intent explicit_intent = new Intent(context, HomeScreen.class);
             explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            explicit_intent.putExtra("Place",place);
+            explicit_intent.putExtra("Place",this.place);
             context.startActivity(explicit_intent);
         }
         else
@@ -60,6 +61,7 @@ public class Main_search extends AsyncTask<Void, Void, String>
     }
     public String return_api_response(String API_link)
     {
+        System.out.println(API_link);
         URL url;
         HttpURLConnection urlConnection;
         String text_from_API;

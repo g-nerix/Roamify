@@ -24,7 +24,7 @@ public class Attraction_list extends AppCompatActivity
     private ArrayList<Double> lon_options = new ArrayList<>();
     private ArrayList<Double> lat_options = new ArrayList<>();
     private ArrayList<String> photo_url_options = new ArrayList<>();
-    private ArrayList<String> price_options = new ArrayList<>();
+    private ArrayList<Integer> price_options = new ArrayList<>();
     private ArrayList<Float> rating_options = new ArrayList<>();
     private ArrayList<String> contact_options = new ArrayList<>();
     private RecyclerView mRecyclerView;

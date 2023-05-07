@@ -8,6 +8,9 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity
 {
     String Location_string;
@@ -18,9 +21,22 @@ public class MainActivity extends AppCompatActivity
     private String country;
     private double latitude, longitude;
 
+
+    /// Sarthak's stupidity starts
+    FirebaseAuth auth;
+    FirebaseUser user;
+
+    /// Sarthak's stupidity ends
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        // Sarthak's stupidity
+        auth= FirebaseAuth.getInstance();
+        user= auth.getCurrentUser();
+
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -30,9 +46,27 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                Intent i = new Intent(MainActivity.this, HomeScreen.class);
-                startActivity(i);
-                finish();
+//                Intent i = new Intent(MainActivity.this, HomeScreen.class);
+//                startActivity(i);
+//                finish();
+
+                if( user==null){
+//                    profile.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+                            startActivity(new Intent(getApplicationContext(), Login.class));
+//                        }
+//                    });
+                }
+                else{
+//                    profile.setText(user.getEmail().substring(0,5));
+//                    profile.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+                            startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+//                        }
+//                    });
+                }
             }
         }, 2000);
     }

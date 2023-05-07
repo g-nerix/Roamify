@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "689192001701",
+    "project_id": "roamify-e0d9e",
+    "storage_bucket": "roamify-e0d9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689192001701:android:f6f2800a3f5451062e2d4c",
+        "android_client_info": {
+          "package_name": "com.example.roamify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689192001701-s185578f4v3j2scsi1jh0ue2rldbek9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB035yGWKVq6o3I8nXMK9uKer4WMtxOXn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689192001701-s185578f4v3j2scsi1jh0ue2rldbek9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689192001701:android:c63ec9b29642492f2e2d4c",
+        "android_client_info": {
+          "package_name": "com.mc2023.template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689192001701-s185578f4v3j2scsi1jh0ue2rldbek9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB035yGWKVq6o3I8nXMK9uKer4WMtxOXn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689192001701-s185578f4v3j2scsi1jh0ue2rldbek9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/img"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/img_1"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/img_2"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/image4"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -198,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/image5"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -232,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/image6"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"

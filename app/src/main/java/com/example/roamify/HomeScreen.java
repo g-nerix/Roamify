@@ -39,7 +39,7 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     ProfileFragment profileFragment = new ProfileFragment();
     SearchFragment searchFragment = new SearchFragment();
     private Intent value_received_from_previous_activity;
-    private String place;
+    public String place;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -220,7 +220,8 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
                 {
                     price = (int) (rating * 2000);
                 }
-                Attraction_description Atrraction_description_obj = new Attraction_description(name,formatted_address,photo_url,price,latitude,longitude, rating,feature,telphone_num);
+                int int_rating = (int) rating;
+                Attraction_description Atrraction_description_obj = new Attraction_description(name,formatted_address,photo_url,price,latitude,longitude, int_rating,feature,telphone_num);
                 tourist_object_list.add(Atrraction_description_obj);
             }
         } catch (JSONException e)

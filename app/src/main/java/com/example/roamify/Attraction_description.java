@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Attraction_description implements Serializable
 {
     public String name, location, photo_url,features, telephone_number;
-    public float latitude, longitude,rating;
-    public int price_range;
-    public Attraction_description(String name, String location, String photo_url, int price_range, float latitude, float longitude, float rating, String features, String telephone_number)
+    public float latitude, longitude;
+    public int price_range,rating;
+    public Attraction_description(String name, String location, String photo_url, int price_range, float latitude, float longitude, int rating, String features, String telephone_number)
     {
         this.name = name;
         this.location= location;

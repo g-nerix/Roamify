@@ -20,7 +20,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -89,7 +88,7 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
         myTask.execute();
     }
 }
-class Search extends AsyncTask<Void, Void, ArrayList<Atrraction_description>>
+class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
 {
 
     private Context context;
@@ -101,7 +100,7 @@ class Search extends AsyncTask<Void, Void, ArrayList<Atrraction_description>>
         this.API = API;
     }
     @Override
-    protected ArrayList<Atrraction_description> doInBackground(Void... voids)
+    protected ArrayList<Attraction_description> doInBackground(Void... voids)
     {
         String text_from_API = return_api_response(API);
         System.out.println(text_from_API);
@@ -110,7 +109,7 @@ class Search extends AsyncTask<Void, Void, ArrayList<Atrraction_description>>
             return null;
         }
         JSONArray json_arr_accommodation;
-        ArrayList<Atrraction_description> tourist_object_list = new ArrayList<>();
+        ArrayList<Attraction_description> tourist_object_list = new ArrayList<>();
         try
         {
             JSONObject json_obj = new JSONObject(text_from_API);
@@ -138,8 +137,8 @@ class Search extends AsyncTask<Void, Void, ArrayList<Atrraction_description>>
 //                if (features_arr.length() > 0) {
 //                    feature = features_arr.getString(0);
 //                }
-                Atrraction_description Atrraction_description_obj = new Atrraction_description(name,formatted_address,photo_url,"abcd",latitude,longitude, (float) 5.6,"","");
-                tourist_object_list.add(Atrraction_description_obj);
+                Attraction_description attraction_description_obj = new Attraction_description(name,formatted_address,photo_url,"abcd",latitude,longitude, (float) 5.6,"","");
+                tourist_object_list.add(attraction_description_obj);
             }
         } catch (JSONException e)
         {
@@ -158,13 +157,13 @@ class Search extends AsyncTask<Void, Void, ArrayList<Atrraction_description>>
 //    }
 
     @Override
-    protected void onPostExecute (ArrayList<Atrraction_description> arr)
+    protected void onPostExecute (ArrayList<Attraction_description> arr)
     {
-        ArrayList<Atrraction_description> arr_second = new ArrayList<>();
-        arr.add(new Atrraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
+        ArrayList<Attraction_description> arr_second = new ArrayList<>();
+        arr.add(new Attraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
         Intent explicit_intent = new Intent(context, Attraction_list.class);
         explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        explicit_intent.putExtra("object_list", arr_second);
+        explicit_intent.putExtra("object_list", arr);
 
         context.startActivity(explicit_intent);
 //        if(my_string != null)

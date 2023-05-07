@@ -54,9 +54,11 @@ public class signUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pb.setVisibility(View.VISIBLE);
-                String mail, ps;
+                String mail, ps, inputed_name, inputed_age;
                 mail = String.valueOf(email.getText());
                 ps = String.valueOf(pass.getText());
+                inputed_name= String.valueOf(name.getText());
+                inputed_age= String.valueOf(age.getText());
 
                 if(TextUtils.isEmpty(mail)){
                     pb.setVisibility(View.GONE);
@@ -67,6 +69,18 @@ public class signUp extends AppCompatActivity {
                 if(TextUtils.isEmpty(ps)){
                     pb.setVisibility(View.GONE);
                     Toast.makeText(signUp.this,"Enter Password",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(inputed_name)){
+                    pb.setVisibility(View.GONE);
+                    Toast.makeText(signUp.this,"Enter Name",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(inputed_age)){
+                    pb.setVisibility(View.GONE);
+                    Toast.makeText(signUp.this,"Enter Email",Toast.LENGTH_SHORT).show();
                     return;
                 }
 

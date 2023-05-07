@@ -10,6 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginEnd="92dp"
+            android:layout_marginBottom="132dp"
+            android:backgroundTint="#0ED689"
+            android:padding="10dp"
+            android:text="Delete"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.887"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.859" />
+
         <TextView
             android:id="@+id/heading"
             android:layout_width="wrap_content"
@@ -20,6 +39,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#0ED689"
+            android:padding="10dp"
+            android:text="Logout"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.21"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.479" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -71,16 +106,6 @@
                 android:textSize="24dp"
                 android:textStyle="italic" />
 
-            <Button
-                android:id="@+id/logoutBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:backgroundTint="#0ED689"
-                android:padding="10dp"
-                android:text="Logout"
-                android:textColor="#ffffff" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,4 +28,16 @@ public class Attraction_description implements Serializable
     public float getRating() {return rating;}
     public String getFeatures() {return features;}
     public String getTelephone_number() {return telephone_number;}
+    public void display()
+    {
+        System.out.println("name" + name);
+        System.out.println("location" + location);
+        System.out.println("photo_url"+ photo_url);
+        System.out.println("price_range" + price_range);
+        System.out.println("latitude" + latitude);
+        System.out.println("longitude" + longitude);
+        System.out.println("Rating" + rating);
+        System.out.println("features" + features);
+        System.out.println("telephone_number" + telephone_number);
+    }
 }

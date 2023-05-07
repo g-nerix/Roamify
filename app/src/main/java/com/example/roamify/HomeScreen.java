@@ -114,31 +114,77 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
         {
             JSONObject json_obj = new JSONObject(text_from_API);
             json_arr_accommodation = json_obj.getJSONArray("results");
-            for (int i = 0; i < json_arr_accommodation.length(); i++) {
+            for (int i = 0; i < json_arr_accommodation.length(); i++)
+            {
                 JSONObject accommodation_obj = json_arr_accommodation.getJSONObject(i);
-                String name = accommodation_obj.getString("name");
-
-                JSONObject location_obj = accommodation_obj.getJSONObject("location");
-                String formatted_address = location_obj.getString("formatted_address");
-
-                JSONObject main_geocodes_obj = accommodation_obj.getJSONObject("geocodes").getJSONObject("main");
-                float latitude = (float) main_geocodes_obj.getDouble("latitude");
-                float longitude = (float) main_geocodes_obj.getDouble("longitude");
-
-                JSONArray photos_arr = accommodation_obj.getJSONArray("photos");
+                String name = "";
+                if (accommodation_obj.has("name"))
+                {
+                    name = accommodation_obj.getString("name");
+                }
+                String formatted_address = "";
+                if (accommodation_obj.has("location"))
+                {
+                    JSONObject location_obj = accommodation_obj.getJSONObject("location");
+                    if(location_obj.has("formatted_address"))
+                    {
+                        formatted_address = location_obj.getString("formatted_address");
+                    }
+                }
+                float latitude = 0, longitude = 0;
+                if(accommodation_obj.has("geocodes") && accommodation_obj.getJSONObject("geocodes").has("main"))
+                {
+                    JSONObject main_geocodes_obj = accommodation_obj.getJSONObject("geocodes").getJSONObject("main");
+                    if(main_geocodes_obj.has("latitude"))
+                    {
+                        latitude = (float) main_geocodes_obj.getDouble("latitude");
+                    }
+                    if(main_geocodes_obj.has("longitude"))
+                    {
+                        longitude = (float) main_geocodes_obj.getDouble("longitude");
+                    }
+                }
                 String photo_url = "";
-                if (photos_arr.length() > 0) {
-                    JSONObject photo_obj = photos_arr.getJSONObject(0);
-                    photo_url = photo_obj.getString("prefix") + photo_obj.getString("suffix");
+                if(accommodation_obj.has("photos"))
+                {
+                    JSONArray photos_arr = accommodation_obj.getJSONArray("photos");
+                    if (photos_arr.length() > 0)
+                    {
+                        JSONObject photo_obj = photos_arr.getJSONObject(0);
+                        photo_url = photo_obj.getString("prefix") + "original" + photo_obj.getString("suffix");
+                    }
+                }
+                String feature = "";
+                if(accommodation_obj.has("features"))
+                {
+                    JSONObject features_arr = accommodation_obj.getJSONObject("features");
+                    System.out.println(features_arr);
+//                    if (features_arr.length() > 0)
+//                    {
+//                        feature = features_arr.getString(0);
+//                    }
+                }
+                String telphone_num = "";
+                if(accommodation_obj.has("tel"))
+                {
+                    telphone_num = accommodation_obj.getString("tel");
                 }
 
-//                JSONArray features_arr = accommodation_obj.getJSONArray("features");
-//                String feature = "";
-//                if (features_arr.length() > 0) {
-//                    feature = features_arr.getString(0);
-//                }
-                Attraction_description attraction_description_obj = new Attraction_description(name,formatted_address,photo_url,"abcd",latitude,longitude, (float) 5.6,"","");
-                tourist_object_list.add(attraction_description_obj);
+                float rating = 0;
+                if(accommodation_obj.has("rating"))
+                {
+                    rating = (float) accommodation_obj.getDouble("rating");
+                }
+
+                String price = "";
+                if(accommodation_obj.has("price"))
+                {
+                    price = String.valueOf(accommodation_obj.getInt("price"));
+                }
+
+                Attraction_description Atrraction_description_obj = new Attraction_description(name,formatted_address,photo_url,price,latitude,longitude, rating,feature,telphone_num);
+//                Atrraction_description_obj.display();
+                tourist_object_list.add(Atrraction_description_obj);
             }
         } catch (JSONException e)
         {
@@ -147,19 +193,9 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
         return tourist_object_list;
     }
 
-//    private Atrraction_description json_obj_parser(JSONObject json_obj) throws JSONException
-//    {
-////        String name = json_obj.getString("name");
-////        JSONObject point= json_obj.getJSONObject("point");
-////        double latitude = point.getDouble("lat");
-////        double longitude = point.getDouble("lon");
-//        return new Atrraction_description(name,latitude,longitude);
-//    }
-
     @Override
     protected void onPostExecute (ArrayList<Attraction_description> arr)
     {
-        ArrayList<Attraction_description> arr_second = new ArrayList<>();
         arr.add(new Attraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
         Intent explicit_intent = new Intent(context, Attraction_list.class);
         explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

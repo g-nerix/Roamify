@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class signUp extends AppCompatActivity {
     private Button SignIn;
@@ -80,7 +82,7 @@ public class signUp extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(inputed_age)){
                     pb.setVisibility(View.GONE);
-                    Toast.makeText(signUp.this,"Enter Email",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signUp.this,"Enter age",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -93,6 +95,24 @@ public class signUp extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Toast.makeText(signUp.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = mAuth.getCurrentUser();
+
+                                   // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(inputed_name+"#"+inputed_age)
+                                            //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                                            .build();
+
+                                    user.updateProfile(profileUpdates)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Log.d("user name, age update", "User profile updated.");
+                                                    }
+                                                }
+                                            });
+
                                     startActivity(new Intent(getApplicationContext(), Second_Page.class));
                                     finish();
                                 } else {

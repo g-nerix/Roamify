@@ -37,9 +37,29 @@ public class ProfileFragment extends Fragment {
         age= view.findViewById(R.id.Age);
         email= view.findViewById(R.id.emailContainer);
 
-        email.setText(user.getEmail());
-        name.setText(user.getDisplayName());
-        //email.setText(user.get);
+        if( user==null){
+//                    profile.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+            //startActivity(new Intent(getApplicationContext(), Login.class));
+//                        }
+//                    });
+
+            Intent intent= new Intent(getActivity(), Login.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
+
+        if( user.getEmail()==null){
+            Intent intent= new Intent(getActivity(), Login.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
+        email.setText("Email: "+user.getEmail());
+
+        String[] x= user.getDisplayName().split("#");
+        name.setText("Name: "+x[0]);
+        age.setText("Age: "+x[1]);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

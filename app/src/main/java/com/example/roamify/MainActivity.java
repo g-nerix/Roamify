@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(getApplicationContext(), Second_Page.class));
 ////                Intent i = new Intent(MainActivity.this, HomeScreen.class);
 ////                startActivity(i);
-//                finish();
+                finish();
 //
                 if( user==null){
 //                    profile.setOnClickListener(new View.OnClickListener() {

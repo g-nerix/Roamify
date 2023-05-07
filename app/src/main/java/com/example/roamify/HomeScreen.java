@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -24,9 +25,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class HomeScreen extends AppCompatActivity implements ExploreFragment.Button_click
+public class HomeScreen extends AppCompatActivity implements ExploreFragment.Button_click, SearchFragment.listener_text
 {
+    public String fragment_search;
 
     BottomNavigationView btm_nav;
 
@@ -80,10 +83,20 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     @Override
     public void Button_click(String type)
     {
-        String base_query = "https://api.foursquare.com/v3/places/search?fields=name%2Cgeocodes%2Clocation%2Cphotos%2Cprice%2Crating%2Cfeatures%2Ctel&limit=5";
+        String base_query = "https://api.foursquare.com/v3/places/search?fields=name%2Cgeocodes%2Clocation%2Cphotos%2Cprice%2Crating%2Cfeatures%2Ctel&limit=15";
         base_query += String.format("&near=%s",place);
         base_query+=String.format("&query=%s",type);
         System.out.println(base_query);
+        Search myTask=new Search(getApplicationContext(),base_query);
+        myTask.execute();
+    }
+
+    @Override
+    public void on_result(String search_string)
+    {
+        String base_query = "https://api.foursquare.com/v3/places/search?fields=name%2Cgeocodes%2Clocation%2Cphotos%2Cprice%2Crating%2Cfeatures%2Ctel&limit=15";
+        base_query += String.format("&near=%s",place);
+        base_query+=String.format("&query=%s",search_string);
         Search myTask=new Search(getApplicationContext(),base_query);
         myTask.execute();
     }
@@ -108,6 +121,7 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
         {
             return null;
         }
+
         JSONArray json_arr_accommodation;
         ArrayList<Attraction_description> tourist_object_list = new ArrayList<>();
         try
@@ -175,15 +189,38 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
                 {
                     rating = (float) accommodation_obj.getDouble("rating");
                 }
-
-                String price = "";
+                if(rating == 0)
+                {
+                    Random rand = new Random();
+                    int randomInt = rand.nextInt((100 - 0) + 1);
+                    rating = (float) (randomInt + rand.nextDouble() / 20.0);
+                }
+                int price = 0;
                 if(accommodation_obj.has("price"))
                 {
-                    price = String.valueOf(accommodation_obj.getInt("price"));
+                    price = accommodation_obj.getInt("price");
+                    if(price == 1)
+                    {
+                        price = 2500;
+                    }
+                    if(price == 2)
+                    {
+                        price = 2500;
+                    }
+                    if(price == 3)
+                    {
+                        price = 2500;
+                    }
+                    if(price == 4)
+                    {
+                        price = 2500;
+                    }
                 }
-
+                else
+                {
+                    price = (int) (rating * 2000);
+                }
                 Attraction_description Atrraction_description_obj = new Attraction_description(name,formatted_address,photo_url,price,latitude,longitude, rating,feature,telphone_num);
-//                Atrraction_description_obj.display();
                 tourist_object_list.add(Atrraction_description_obj);
             }
         } catch (JSONException e)
@@ -196,23 +233,18 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
     @Override
     protected void onPostExecute (ArrayList<Attraction_description> arr)
     {
-        arr.add(new Attraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
-        Intent explicit_intent = new Intent(context, Attraction_list.class);
-        explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        explicit_intent.putExtra("object_list", arr);
-
-        context.startActivity(explicit_intent);
-//        if(my_string != null)
-//        {
-//            Intent explicit_intent = new Intent(context, HomeScreen.class);
-//            explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            explicit_intent.putExtra("Place",place);
-//            context.startActivity(explicit_intent);
-//        }
-//        else
-//        {
-//            Toast.makeText(context,"Place not found",Toast.LENGTH_SHORT).show();
-//        }
+        if(arr != null)
+        {
+//            arr.add(new Attraction_description("name","Location","some url","price range string", (float) 4.3, (float) 5.6, (float) 7.9,"features","telphone"));
+            Intent explicit_intent = new Intent(context, Attraction_list.class);
+            explicit_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            explicit_intent.putExtra("object_list", arr);
+            context.startActivity(explicit_intent);
+        }
+        else
+        {
+            Toast.makeText(context.getApplicationContext(),"Query has no output",Toast.LENGTH_SHORT).show();
+        }
     }
     public String return_api_response(String API_link)
     {

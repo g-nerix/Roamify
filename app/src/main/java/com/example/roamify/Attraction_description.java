@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 public class Attraction_description implements Serializable
 {
-    public String name, location, photo_url,features, telephone_number,price_range;
+    public String name, location, photo_url,features, telephone_number;
     public float latitude, longitude,rating;
-    public Attraction_description(String name, String location, String photo_url, String price_range, float latitude, float longitude, float rating, String features, String telephone_number)
+    public int price_range;
+    public Attraction_description(String name, String location, String photo_url, int price_range, float latitude, float longitude, float rating, String features, String telephone_number)
     {
         this.name = name;
         this.location= location;
@@ -22,7 +23,7 @@ public class Attraction_description implements Serializable
     public String getName(){return name;}
     public String getLocation() { return location;}
     public  String getPhoto_url() {return photo_url;}
-    public String getPrice_range() {return price_range;}
+    public Integer getPrice_range() {return price_range;}
     public float getLatitude() {return latitude;}
     public float getLongitude() {return longitude;}
     public float getRating() {return rating;}

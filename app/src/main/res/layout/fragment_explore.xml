@@ -104,30 +104,6 @@
                 android:src="@drawable/ic_launcher_foreground" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/Attraction_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Particular Type of Attraction"
-            android:textColor="#673AB7"
-            android:textColorHighlight="#673AB7"
-            android:textColorHint="#673AB7"
-            android:textColorLink="#009688"
-            android:textSize="52dp"
-            tools:ignore="MissingConstraints"
-            android:layout_marginBottom="0dp"
-            />
-
-        <ImageButton
-            android:id="@+id/Search_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#5E35B1"
-            android:contentDescription="search_button"
-            android:src="@android:drawable/ic_menu_search"
-            android:layout_marginBottom="20dp"
-            />
 
     </LinearLayout>
 

@@ -72,9 +72,9 @@ public class Attraction_page extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 if(box.isChecked()){
-                    Intent intent =new Intent(getApplicationContext(), HomeScreen.class);
-                    intent.putExtra("name",name);
-                    intent.putExtra("price",price);
+                    Intent intent2 =new Intent(getApplicationContext(), HomeScreen.class);
+                    intent2.putExtra("name",name);
+                    intent2.putExtra("price",intent.getIntExtra("price",0));
                 }
             }
         });

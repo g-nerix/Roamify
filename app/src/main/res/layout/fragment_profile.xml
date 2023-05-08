@@ -141,34 +141,6 @@
                 android:layout_marginTop="5dp"/>
 
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/l4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/l3"
-            android:layout_marginTop="20dp"
-
-            >
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/baseline_person"
-                android:layout_marginLeft="70dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Age"
-                android:textSize="18sp"
-                android:textColor="#000"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"/>
-
-        </LinearLayout>
 
 
         <LinearLayout

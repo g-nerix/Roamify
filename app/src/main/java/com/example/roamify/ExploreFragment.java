@@ -1,6 +1,7 @@
 package com.example.roamify;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,14 +12,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ExploreFragment extends Fragment
 {
-    private ImageButton hotel_button, shop_button, restaurant_button, attraction_button;
+    private ImageView hotel,shop,restaurant,attraction;
+    private TextView head;
     public interface Button_click {
         void Button_click(String type);
     }
-
+    private String myString;
     private Button_click button_listener_interface;
     @Override
     public void onAttach(@NonNull Context context) {
@@ -29,43 +33,43 @@ public class ExploreFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        HomeScreen home = (HomeScreen) getActivity();
+        myString = home.place;
         return inflater.inflate(R.layout.fragment_explore, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        hotel_button = view.findViewById(R.id.Hotel);
-        shop_button = view.findViewById(R.id.Shop);
-        restaurant_button = view.findViewById(R.id.Restaurant);
-        attraction_button = view.findViewById(R.id.Attraction);
-        hotel_button.setOnClickListener(new View.OnClickListener() {
+        head=view.findViewById(R.id.heading);
+        hotel=view.findViewById(R.id.img);
+        restaurant=view.findViewById(R.id.img_1);
+        shop=view.findViewById(R.id.img_2);
+        attraction=view.findViewById(R.id.image4);
+        head.setText("Welcome to\n"+myString);
+        hotel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View view) {
                 button_listener_interface.Button_click("Hotel");
             }
         });
-        shop_button.setOnClickListener(new View.OnClickListener() {
+
+        restaurant.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                button_listener_interface.Button_click("Shop");
-            }
-        });
-        restaurant_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
+            public void onClick(View view) {
                 button_listener_interface.Button_click("Restaurant");
             }
         });
-        attraction_button.setOnClickListener(new View.OnClickListener() {
+
+        shop.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View view) {
+                button_listener_interface.Button_click("Shop");
+            }
+        });
+        attraction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 button_listener_interface.Button_click("Attraction");
             }
         });
     }
-
 }

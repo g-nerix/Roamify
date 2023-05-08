@@ -39,8 +39,8 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     SearchFragment searchFragment = new SearchFragment();
     private Intent value_received_from_previous_activity;
     public String place;
-    public double lon,lat;
-    public String name;
+    public double lon = 77.27,lat = 28.54;
+    public String name = "IIIsTD";
     public ArrayList<String> checked_name_list = new ArrayList<>();
     public ArrayList<Integer> checked_price_list = new ArrayList<>();
 

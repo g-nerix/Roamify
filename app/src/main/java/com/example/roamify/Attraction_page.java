@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class Attraction_page extends AppCompatActivity
 {
     private Context context;
@@ -55,6 +57,8 @@ public class Attraction_page extends AppCompatActivity
         contactTxt.setText(contact);
         locTxt.setText(loc);
         pricingTxt.setText(price);
+        ArrayList<String> checked_name_list = (ArrayList<String>) intent.getSerializableExtra("name_list");
+        ArrayList<Integer> checked_price_list = (ArrayList<Integer>) intent.getSerializableExtra("price_list");
 
         new LoadImage(image).execute(url);
         map.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +69,8 @@ public class Attraction_page extends AppCompatActivity
                 explicit_intent.putExtra("go_to_map", "go_to_map");
                 explicit_intent.putExtra("latitude", lat);
                 explicit_intent.putExtra("Place", place);
+                explicit_intent.putExtra("name_list",checked_name_list);
+                explicit_intent.putExtra("price_list",checked_price_list);
                 context.startActivity(explicit_intent);
             }
         });
@@ -78,6 +84,8 @@ public class Attraction_page extends AppCompatActivity
                     intent2.putExtra("name",name);
                     intent2.putExtra("price",Integer.valueOf(price));
                     intent2.putExtra("Place", place);
+                    intent2.putExtra("name_list",checked_name_list);
+                    intent2.putExtra("price_list",checked_price_list);
                     context.startActivity(intent2);
                 }
             }

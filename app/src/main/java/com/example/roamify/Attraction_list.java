@@ -98,6 +98,8 @@ public class Attraction_list extends AppCompatActivity
                     explicit_intent.putExtra("location",loc_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("price",price_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("place",arr.get(0).getPlace());
+                    explicit_intent.putExtra("name_list",arr.get(0).getChecked_name_list());
+                    explicit_intent.putExtra("price_list",arr.get(0).getChecked_price_list());
                     startActivity(explicit_intent);
                 }
             });

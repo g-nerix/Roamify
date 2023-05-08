@@ -45,7 +45,8 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     public ArrayList<Integer> checked_price_list = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         value_received_from_previous_activity = getIntent();
@@ -56,6 +57,8 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
             lon = value_received_from_previous_activity.getDoubleExtra("longitude",0);
             lat = value_received_from_previous_activity.getDoubleExtra("latitude",0);
             name = value_received_from_previous_activity.getStringExtra("name");
+            checked_name_list= (ArrayList<String>) value_received_from_previous_activity.getSerializableExtra("name_list");
+            checked_price_list = (ArrayList<Integer>) value_received_from_previous_activity.getSerializableExtra("price_list");
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,mapFragment).commit();
 
             btm_nav.setSelectedItemId(R.id.map);
@@ -64,9 +67,8 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
         {
             String name_ = value_received_from_previous_activity.getStringExtra("name");
             int price = value_received_from_previous_activity.getIntExtra("price",0);
-            System.out.println("Home screen");
-            System.out.println(price);
-            System.out.println();
+            checked_name_list= (ArrayList<String>) value_received_from_previous_activity.getSerializableExtra("name_list");
+            checked_price_list = (ArrayList<Integer>) value_received_from_previous_activity.getSerializableExtra("price_list");
             checked_name_list.add(name_);
             checked_price_list.add(price);
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,favouriteFragment).commit();
@@ -114,7 +116,7 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
         base_query += String.format("&near=%s",place);
         base_query+=String.format("&query=%s",type);
         System.out.println(base_query);
-        Search myTask=new Search(getApplicationContext(),base_query,place);
+        Search myTask=new Search(getApplicationContext(),base_query,place,checked_name_list,checked_price_list);
         myTask.execute();
     }
 
@@ -124,7 +126,7 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
         String base_query = "https://api.foursquare.com/v3/places/search?fields=name%2Cgeocodes%2Clocation%2Cphotos%2Cprice%2Crating%2Cfeatures%2Ctel&limit=15";
         base_query += String.format("&near=%s",place);
         base_query+=String.format("&query=%s",search_string);
-        Search myTask=new Search(getApplicationContext(),base_query,place);
+        Search myTask=new Search(getApplicationContext(),base_query,place,checked_name_list,checked_price_list);
         myTask.execute();
     }
 }
@@ -134,11 +136,15 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
     private String API;
 
     private String place;
-    public Search(Context context,String API,String place)
+    ArrayList<String> checked_name_list;
+    ArrayList<Integer> checked_price_list;
+    public Search(Context context,String API,String place,ArrayList<String> checked_name_list,ArrayList<Integer> checked_price_list)
     {
         this.context = context;
         this.API = API;
         this.place = place;
+        this.checked_name_list  = checked_name_list;
+        this.checked_price_list = checked_price_list;
     }
     @Override
     protected ArrayList<Attraction_description> doInBackground(Void... voids)
@@ -250,7 +256,7 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
                     price = (int) (rating * 1000);
                 }
                 int int_rating = (int) rating;
-                Attraction_description Atrraction_description_obj = new Attraction_description(name,formatted_address,photo_url,price,latitude,longitude, int_rating,feature,telphone_num,place);
+                Attraction_description Atrraction_description_obj = new Attraction_description(name,formatted_address,photo_url,price,latitude,longitude, int_rating,feature,telphone_num,place,checked_name_list,checked_price_list);
                 tourist_object_list.add(Atrraction_description_obj);
             }
         } catch (JSONException e)

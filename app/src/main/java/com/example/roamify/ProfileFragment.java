@@ -46,7 +46,7 @@ public class ProfileFragment extends Fragment {
         name= view.findViewById(R.id.Name);
         age= view.findViewById(R.id.Age);
         email= view.findViewById(R.id.emailContainer);
-        delete= view.findViewById(R.id.Delete);
+        //delete= view.findViewById(R.id.Delete);
 
         if( user==null){
 //                    profile.setOnClickListener(new View.OnClickListener() {
@@ -84,40 +84,40 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Delete Account")
-                        .setMessage("Are you sure you want to delete your account?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // Delete the user's account
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                user.delete()
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    // Delete the user's data from the Realtime Database
-                                                    mDatabase.child("users").child(user.getUid()).removeValue();
-                                                    // Sign out and return to the login screen
-                                                    FirebaseAuth.getInstance().signOut();
-                                                    Intent intent = new Intent(getActivity(), Login.class);
-                                                    startActivity(intent);
-                                                    getActivity().finish();
-                                                } else {
-                                                    Toast.makeText(getContext(), "Failed to delete account", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                builder.setTitle("Delete Account")
+//                        .setMessage("Are you sure you want to delete your account?")
+//                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                // Delete the user's account
+//                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                                user.delete()
+//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                            @Override
+//                                            public void onComplete(@NonNull Task<Void> task) {
+//                                                if (task.isSuccessful()) {
+//                                                    // Delete the user's data from the Realtime Database
+//                                                    mDatabase.child("users").child(user.getUid()).removeValue();
+//                                                    // Sign out and return to the login screen
+//                                                    FirebaseAuth.getInstance().signOut();
+//                                                    Intent intent = new Intent(getActivity(), Login.class);
+//                                                    startActivity(intent);
+//                                                    getActivity().finish();
+//                                                } else {
+//                                                    Toast.makeText(getContext(), "Failed to delete account", Toast.LENGTH_SHORT).show();
+//                                                }
+//                                            }
+//                                        });
+//                            }
+//                        })
+//                        .setNegativeButton("No", null)
+//                        .show();
+//            }
+//        });
 
 
         return view;

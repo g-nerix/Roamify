@@ -32,7 +32,6 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     public String fragment_search;
     public int totalAmount=0;
     BottomNavigationView btm_nav;
-
     ExploreFragment exploreFragment = new ExploreFragment();
     FavouriteFragment favouriteFragment = new FavouriteFragment();
     MapFragment mapFragment = new MapFragment();
@@ -42,6 +41,9 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     public String place;
     public double lon,lat;
     public String name;
+    public ArrayList<String> checked_name_list = new ArrayList<>();
+    public ArrayList<Integer> checked_price_list = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +64,16 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
             place = value_received_from_previous_activity.getStringExtra("Place");
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,exploreFragment).commit();
         }
+        if(value_received_from_previous_activity.hasExtra("name"))
+        {
+            String name = value_received_from_previous_activity.getStringExtra("name");
+            int price = value_received_from_previous_activity.getIntExtra("price",0);
+            checked_name_list.add(name);
+            checked_price_list.add(price);
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,favouriteFragment).commit();
+            btm_nav.setSelectedItemId(R.id.favourite);
+        }
 
-        Intent intent=getIntent();
-        String name = intent.getStringExtra("name");
-        int price = intent.getIntExtra("price",0);
 
         btm_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

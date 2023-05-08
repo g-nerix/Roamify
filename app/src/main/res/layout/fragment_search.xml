@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment">
+    tools:context=".SearchFragment"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/frm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <SearchView
-            android:id="@+id/Search_view"
+        >
+
+        <ImageButton
+            android:id="@+id/display_image"
+            android:layout_width="wrap_content"
+            android:layout_height="230dp"
+            android:src="@drawable/img_1"
+            android:padding="4dp"
+            />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="20dp"
+            android:text="Search by Attractions"
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <SearchView
+            android:id="@+id/Search_view"
             android:ems="10"
-            android:hint="Particular Type of Attraction"
-            android:textColor="#673AB7"
-            android:textColorHighlight="#673AB7"
-            android:textColorHint="#673AB7"
-            android:textColorLink="#009688"
-            android:textSize="52dp"></SearchView>
-    </LinearLayout>
-</FrameLayout>
+            android:outlineSpotShadowColor="@color/black"
+            android:hint="What's your destination?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="195dp"
+            android:background="@drawable/searchview_border"
+            />
+    </FrameLayout>
+</LinearLayout>

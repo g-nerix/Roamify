@@ -54,25 +54,9 @@ private GoogleMap mMap;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Bundle extras = getActivity().getIntent().getExtras();
-        if (extras != null) {
-            String name = extras.getString("name");
-            double latitude = extras.getDouble("latitude");
-            double longitude = extras.getDouble("longitude");
-
-            // Add marker and move camera
-
-            LatLng location = new LatLng(latitude, longitude);
-            mMap.addMarker(new MarkerOptions().position(location).title(name));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f));
-        } else {
-            Toast.makeText(getActivity(), "Error: Location data not found.", Toast.LENGTH_SHORT).show();
-        }
-//        mMap = googleMap;
-
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng location = new LatLng(((HomeScreen) getActivity()).lat, ((HomeScreen) getActivity()).lon);
+        mMap.addMarker(new MarkerOptions().position(location).title(((HomeScreen) getActivity()).name));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f));
     }
 
     @Override

@@ -40,14 +40,28 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     SearchFragment searchFragment = new SearchFragment();
     private Intent value_received_from_previous_activity;
     public String place;
+    public double lon,lat;
+    public String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         value_received_from_previous_activity = getIntent();
-        place = value_received_from_previous_activity.getStringExtra("Place");
         btm_nav = findViewById(R.id.btm_nav);
-        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,exploreFragment).commit();
+        if(value_received_from_previous_activity.hasExtra("go_to_map"))
+        {
+            lon = value_received_from_previous_activity.getDoubleExtra("longitude",0);
+            lat = value_received_from_previous_activity.getDoubleExtra("latitude",0);
+            name = value_received_from_previous_activity.getStringExtra("name");
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,mapFragment).commit();
+
+            btm_nav.setSelectedItemId(R.id.map);
+        }
+        else
+        {
+            place = value_received_from_previous_activity.getStringExtra("Place");
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,exploreFragment).commit();
+        }
 
         btm_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

@@ -64,6 +64,7 @@ public class Attraction_page extends AppCompatActivity
                 explicit_intent.putExtra("longitude", lon);
                 explicit_intent.putExtra("go_to_map", "go_to_map");
                 explicit_intent.putExtra("latitude", lat);
+                explicit_intent.putExtra("name", name);
                 context.startActivity(explicit_intent);
             }
         });
@@ -71,7 +72,8 @@ public class Attraction_page extends AppCompatActivity
         box.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if(box.isChecked()){
+                if(box.isChecked())
+                {
                     Intent intent =new Intent(getApplicationContext(), HomeScreen.class);
                     intent.putExtra("name",name);
                     intent.putExtra("price",price);

@@ -127,7 +127,6 @@
                 android:layout_height="36dp"
                 android:src="@drawable/baseline_escalator_warning_24"
                 android:layout_marginLeft="70dp"
-
                 />
 
 

@@ -25,7 +25,7 @@ public class Attraction_list extends AppCompatActivity
     private ArrayList<Double> lat_options = new ArrayList<>();
     private ArrayList<String> photo_url_options = new ArrayList<>();
     private ArrayList<Integer> price_options = new ArrayList<>();
-    private ArrayList<Float> rating_options = new ArrayList<>();
+    private ArrayList<Integer> rating_options = new ArrayList<>();
     private ArrayList<String> contact_options = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private ButtonAdapter mAdapter;
@@ -49,10 +49,14 @@ public class Attraction_list extends AppCompatActivity
             types_options.add(arr.get(i).getName());
             lon_options.add((double) arr.get(i).getLongitude());
             lat_options.add((double) arr.get(i).getLatitude());
+            System.out.println(lon_options.get(i));
+            System.out.println(lat_options.get(i));
             photo_url_options.add(arr.get(i).getPhoto_url());
             price_options.add(arr.get(i).getPrice_range());
-            rating_options.add(arr.get(i).getRating());
+            rating_options.add((int) arr.get(i).getRating());
             contact_options.add(arr.get(i).getTelephone_number());
+            System.out.println(price_options.get(i));
+            System.out.println(rating_options.get(i));
         }
         System.out.println(types_options);
         System.out.println(photo_url_options);
@@ -60,7 +64,8 @@ public class Attraction_list extends AppCompatActivity
         System.out.println(rating_options);
         System.out.println(contact_options);
     }
-    public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder> {
+    public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>
+    {
 
         public ButtonAdapter(ArrayList<String> values) {
             types_options = values;

@@ -35,10 +35,10 @@ public class Attraction_page extends AppCompatActivity {
         double lon = intent.getDoubleExtra("longitude",0);
         double lat = intent.getDoubleExtra("latitude",0);
         String url = intent.getStringExtra("URL");
-        //Float rating = Float.valueOf(intent.getStringExtra("rating"));
+        int rating = intent.getIntExtra("rating",0);
         String contact = intent.getStringExtra("contact");
 
-        //rateTxt.setText(Float.toString(rating));
+        rateTxt.setText(Integer.toString(rating));
         nameTxt.setText(name);
         contactTxt.setText(contact);
         new LoadImage(image).execute(url);

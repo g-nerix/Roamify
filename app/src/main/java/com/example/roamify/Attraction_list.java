@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class Attraction_list extends AppCompatActivity
 {
     private ArrayList<String> types_options = new ArrayList<>();
+    private ArrayList<String> loc_options = new ArrayList<>();
     private ArrayList<Double> lon_options = new ArrayList<>();
     private ArrayList<Double> lat_options = new ArrayList<>();
     private ArrayList<String> photo_url_options = new ArrayList<>();
@@ -49,23 +50,20 @@ public class Attraction_list extends AppCompatActivity
             types_options.add(arr.get(i).getName());
             lon_options.add((double) arr.get(i).getLongitude());
             lat_options.add((double) arr.get(i).getLatitude());
-            System.out.println(lon_options.get(i));
-            System.out.println(lat_options.get(i));
             photo_url_options.add(arr.get(i).getPhoto_url());
             price_options.add(arr.get(i).getPrice_range());
             rating_options.add((int) arr.get(i).getRating());
             contact_options.add(arr.get(i).getTelephone_number());
-            System.out.println(price_options.get(i));
-            System.out.println(rating_options.get(i));
+            loc_options.add(arr.get(i).getLocation());
         }
         System.out.println(types_options);
         System.out.println(photo_url_options);
         System.out.println(price_options);
         System.out.println(rating_options);
         System.out.println(contact_options);
+        System.out.println(loc_options);
     }
-    public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>
-    {
+    public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder> {
 
         public ButtonAdapter(ArrayList<String> values) {
             types_options = values;
@@ -96,6 +94,8 @@ public class Attraction_list extends AppCompatActivity
                     explicit_intent.putExtra("latitude", lat_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("rating",rating_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("contact",contact_options.get(types_options.indexOf(value)));
+                    explicit_intent.putExtra("location",loc_options.get(types_options.indexOf(value)));
+                    explicit_intent.putExtra("price",price_options.get(types_options.indexOf(value)));
                     startActivity(explicit_intent);
                 }
             });

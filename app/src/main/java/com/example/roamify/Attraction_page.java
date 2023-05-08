@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ public class Attraction_page extends AppCompatActivity {
 
     TextView nameTxt, pricingTxt, rateTxt, contactTxt, locTxt;
     ImageView image;
+    CheckBox box;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class Attraction_page extends AppCompatActivity {
         contactTxt=findViewById(R.id.phoneTxt);
         locTxt=findViewById(R.id.locTxt);
         image=findViewById(R.id.pic);
+        box =findViewById(R.id.checkBox);
         ImageView map = findViewById(R.id.mapButton);
 
         Intent intent=getIntent();
@@ -36,11 +40,16 @@ public class Attraction_page extends AppCompatActivity {
         double lat = intent.getDoubleExtra("latitude",0);
         String url = intent.getStringExtra("URL");
         int rating = intent.getIntExtra("rating",0);
+        String loc = intent.getStringExtra("location");
         String contact = intent.getStringExtra("contact");
+        String price = String.valueOf(intent.getIntExtra("price",0));
 
         rateTxt.setText(Integer.toString(rating));
         nameTxt.setText(name);
         contactTxt.setText(contact);
+        locTxt.setText(loc);
+        pricingTxt.setText(price);
+
         new LoadImage(image).execute(url);
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +61,17 @@ public class Attraction_page extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.flFragment, fragment);
                 transaction.commit();
+            }
+        });
+
+        box.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(box.isChecked()){
+                    Intent intent =new Intent(getApplicationContext(), HomeScreen.class);
+                    intent.putExtra("name",name);
+                    intent.putExtra("price",price);
+                }
             }
         });
     }

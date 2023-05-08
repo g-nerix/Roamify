@@ -26,7 +26,7 @@ public class Attraction_description implements Serializable
     public Integer getPrice_range() {return price_range;}
     public float getLatitude() {return latitude;}
     public float getLongitude() {return longitude;}
-    public float getRating() {return rating;}
+    public Integer getRating() {return rating;}
     public String getFeatures() {return features;}
     public String getTelephone_number() {return telephone_number;}
     public void display()

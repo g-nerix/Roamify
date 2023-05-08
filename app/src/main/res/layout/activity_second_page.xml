@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img" />
+                    android:src="@drawable/delhi" />
 
                 <TextView
                     android:id="@+id/text1"
@@ -104,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_2" />
+                    android:src="@drawable/Banglore" />
 
                 <TextView
                     android:id="@+id/text2"
@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_3" />
+                    android:src="@drawable/hydrabad" />
 
                 <TextView
                     android:id="@+id/text3"
@@ -170,7 +170,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_4" />
+                    android:src="@drawable/mumbai" />
 
                 <TextView
                     android:id="@+id/text4"
@@ -203,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_1" />
+                    android:src="@drawable/paris" />
 
                 <TextView
                     android:id="@+id/text5"
@@ -237,7 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_2" />
+                    android:src="@drawable/new_york" />
 
                 <TextView
                     android:id="@+id/text6"

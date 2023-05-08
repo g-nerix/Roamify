@@ -188,7 +188,7 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
                 if(accommodation_obj.has("rating"))
                 {
                     rating = (float) accommodation_obj.getDouble("rating");
-                    rating /=2
+                    rating /=2;
                 }
                 if(rating == 0)
                 {

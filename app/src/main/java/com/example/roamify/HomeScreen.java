@@ -236,7 +236,7 @@ class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
                 }
                 else
                 {
-                    price = (int) (rating * 2000);
+                    price = (int) (rating * 1000);
                 }
                 int int_rating = (int) rating;
                 Attraction_description Atrraction_description_obj = new Attraction_description(name,formatted_address,photo_url,price,latitude,longitude, int_rating,feature,telphone_num);

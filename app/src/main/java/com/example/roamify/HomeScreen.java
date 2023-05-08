@@ -30,7 +30,7 @@ import java.util.Random;
 public class HomeScreen extends AppCompatActivity implements ExploreFragment.Button_click, SearchFragment.listener_text
 {
     public String fragment_search;
-
+    public int totalAmount=0;
     BottomNavigationView btm_nav;
 
     ExploreFragment exploreFragment = new ExploreFragment();
@@ -62,6 +62,10 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
             place = value_received_from_previous_activity.getStringExtra("Place");
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,exploreFragment).commit();
         }
+
+        Intent intent=getIntent();
+        String name = intent.getStringExtra("name");
+        int price = intent.getIntExtra("price",0);
 
         btm_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -117,7 +121,6 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
 }
 class Search extends AsyncTask<Void, Void, ArrayList<Attraction_description>>
 {
-
     private Context context;
     private String API;
 

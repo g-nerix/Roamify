@@ -15,7 +15,7 @@
           android:layout_height="120dp"
 
           android:id="@+id/imageView_profile"
-          android:src="@drawable/baseline_face_2_24"
+          android:src="@drawable/einstein"
           android:layout_centerHorizontal="true"
           android:layout_marginTop="60dp"
           />

@@ -10,16 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-      <ImageView
+      <de.hdodenhof.circleimageview.CircleImageView
           android:layout_width="120dp"
           android:layout_height="120dp"
-          ></ImageView>
+
+          android:id="@+id/imageView_profile"
+          android:src="@drawable/baseline_face_2_24"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="60dp"
+          />
         
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Name"
             android:text="Sarthak Dixit"
+            android:layout_below="@+id/imageView_profile"
             android:layout_centerHorizontal="true"
             android:textStyle="bold"
             android:layout_marginTop="50dp"

@@ -36,6 +36,7 @@ public class FavouriteFragment extends Fragment {
 
         System.out.println(checked_names);
         System.out.println(checked_prices);
+        amt.setText(totalAmount);
 
         return view;
     }

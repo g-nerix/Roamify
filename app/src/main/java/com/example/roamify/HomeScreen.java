@@ -39,8 +39,8 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
     SearchFragment searchFragment = new SearchFragment();
     private Intent value_received_from_previous_activity;
     public String place;
-    public double lon,lat;
-    public String name;
+    public double lon = 77.2732,lat = 28.5459;
+    public String name = "IIITD";
     public ArrayList<String> checked_name_list = new ArrayList<>();
     public ArrayList<Integer> checked_price_list = new ArrayList<>();
 
@@ -66,9 +66,9 @@ public class HomeScreen extends AppCompatActivity implements ExploreFragment.But
         }
         if(value_received_from_previous_activity.hasExtra("name"))
         {
-            String name = value_received_from_previous_activity.getStringExtra("name");
+            String name_ = value_received_from_previous_activity.getStringExtra("name");
             int price = value_received_from_previous_activity.getIntExtra("price",0);
-            checked_name_list.add(name);
+            checked_name_list.add(name_);
             checked_price_list.add(price);
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,favouriteFragment).commit();
             btm_nav.setSelectedItemId(R.id.favourite);

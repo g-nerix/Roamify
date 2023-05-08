@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Age"
-                android:id="@+id/phone_no"
+                android:id="@+id/Name_1"
                 android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_marginLeft="20dp"
@@ -101,6 +101,7 @@
                 android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_marginLeft="20dp"
+                android:id="@+id/email_1"
                 android:layout_marginTop="5dp"/>
 
         </LinearLayout>
@@ -179,10 +180,20 @@
                 android:id="@+id/logoutBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Log Out"
-                android:textSize="18sp"
-                android:textColor="#000"
                 android:layout_marginLeft="20dp"
+                android:text="Log Out"
+                android:textColor="#000"
+                android:textSize="18sp"
+
+                />
+            <Button
+                android:id="@+id/Delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Delete"
+                android:textColor="#000"
+                android:textSize="18sp"
 
                 />
 

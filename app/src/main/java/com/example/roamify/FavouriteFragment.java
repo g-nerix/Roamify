@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class FavouriteFragment extends Fragment {
     public ArrayList<String> checked_names = new ArrayList<>();
     public ArrayList<Integer> checked_prices = new ArrayList<>();
-    public Integer totalAmount;
+    public Integer totalAmount =0;
     private RecyclerView mRecyclerView;
     private ButtonAdapter mAdapter;
 
@@ -26,18 +26,19 @@ public class FavouriteFragment extends Fragment {
     {
         checked_names = ((HomeScreen) getActivity()).checked_name_list;
         checked_prices = ((HomeScreen) getActivity()).checked_price_list;
-
+        System.out.println(checked_prices);
         View view=inflater.inflate(R.layout.fragment_favourite, container, false);
-        amt= view.findViewById(R.id.totalAmount);
+        amt= (TextView) view.findViewById(R.id.totalAmount);
         mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mAdapter = new FavouriteFragment.ButtonAdapter(checked_names);
         mRecyclerView.setAdapter(mAdapter);
-
-        System.out.println(checked_names);
-        System.out.println(checked_prices);
-        amt.setText(totalAmount);
-
+        int totalAmount = 0;
+        for(int i=0; i<checked_prices.size(); i++)
+        {
+            totalAmount += checked_prices.get(i);
+        }
+        amt.setText(String.valueOf(totalAmount));
         return view;
     }
 
@@ -49,22 +50,25 @@ public class FavouriteFragment extends Fragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_button, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recy_button, parent, false);
             return new FavouriteFragment.ButtonAdapter.ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(ViewHolder holder, int position)
+        {
+            System.out.println(holder);
+            System.out.println(holder.att_txt);
             String value = checked_names.get(position);
             holder.att_txt.setText(value);
-            totalAmount+=checked_prices.get(checked_names.indexOf(value));
         }
 
         @Override
         public int getItemCount() {
             return checked_names.size();
         }
-        public class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder
+        {
             public TextView att_txt;
 
             public ViewHolder(View itemView) {

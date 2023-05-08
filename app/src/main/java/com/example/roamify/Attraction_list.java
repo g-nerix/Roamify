@@ -32,6 +32,7 @@ public class Attraction_list extends AppCompatActivity
     private ButtonAdapter mAdapter;
     private Intent value_received_from_previous_activity;
     private ArrayList<Attraction_description> arr;
+    private String place;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -96,6 +97,7 @@ public class Attraction_list extends AppCompatActivity
                     explicit_intent.putExtra("contact",contact_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("location",loc_options.get(types_options.indexOf(value)));
                     explicit_intent.putExtra("price",price_options.get(types_options.indexOf(value)));
+                    explicit_intent.putExtra("place",arr.get(0).getPlace());
                     startActivity(explicit_intent);
                 }
             });

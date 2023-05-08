@@ -49,7 +49,7 @@ public class Attraction_page extends AppCompatActivity
         String loc = intent.getStringExtra("location");
         String contact = intent.getStringExtra("contact");
         String price = String.valueOf(intent.getIntExtra("price",0));
-
+        String place = intent.getStringExtra("place");
         rateTxt.setText(Integer.toString(rating));
         nameTxt.setText(name);
         contactTxt.setText(contact);
@@ -64,6 +64,7 @@ public class Attraction_page extends AppCompatActivity
                 explicit_intent.putExtra("longitude", lon);
                 explicit_intent.putExtra("go_to_map", "go_to_map");
                 explicit_intent.putExtra("latitude", lat);
+                explicit_intent.putExtra("Place", place);
                 context.startActivity(explicit_intent);
             }
         });
@@ -71,10 +72,13 @@ public class Attraction_page extends AppCompatActivity
         box.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if(box.isChecked()){
+                if(box.isChecked())
+                {
                     Intent intent2 =new Intent(getApplicationContext(), HomeScreen.class);
                     intent2.putExtra("name",name);
-                    intent2.putExtra("price",price);
+                    intent2.putExtra("price",Integer.valueOf(price));
+                    intent2.putExtra("Place", place);
+                    context.startActivity(intent2);
                 }
             }
         });

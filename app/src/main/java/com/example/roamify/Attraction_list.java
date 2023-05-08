@@ -111,7 +111,6 @@ public class Attraction_list extends AppCompatActivity
             public ButtonViewHolder(View itemView) {
                 super(itemView);
                 button = itemView.findViewById(R.id.button);
-
             }
         }
     }

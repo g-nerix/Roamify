@@ -45,11 +45,12 @@
     <ImageView
         android:id="@+id/pic"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_crop" />
+        app:srcCompat="@android:drawable/ic_menu_crop"
+        android:background="@drawable/background"/>
 
     <TextView
         android:id="@+id/nameTxt"
@@ -118,21 +119,23 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="104dp"
         android:gravity="center"
-        android:text="Choose?"
+        android:text="Add to Travel Plan"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="30dp"/>
 
     <TextView
         android:id="@+id/locTxt"
         android:layout_width="259dp"
         android:layout_height="84dp"
+        android:text="NEW DELHI, INDIA"
         android:layout_marginStart="14dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="38dp"
@@ -154,9 +157,10 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="220dp"
+
         android:layout_marginBottom="104dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/textView12" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

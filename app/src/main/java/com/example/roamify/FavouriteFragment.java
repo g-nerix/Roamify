@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,10 @@ public class FavouriteFragment extends Fragment {
         {
             totalAmount += checked_prices.get(i);
         }
-        amt.setText(String.valueOf(totalAmount));
+//        amt.setText(String.valueOf(totalAmount));
+        CacheManager.saveData(getContext(), "totalAmount", String.valueOf(totalAmount));
+        Toast.makeText(getContext(),"Trip budget added to your cache",Toast.LENGTH_SHORT).show();
+        amt.setText("₹"+CacheManager.getData(getContext(),"totalAmount"));
         return view;
     }
 

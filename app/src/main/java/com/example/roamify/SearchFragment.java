@@ -1,6 +1,7 @@
 package com.example.roamify;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,11 +11,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 
 public class SearchFragment extends Fragment implements SearchView.OnQueryTextListener
 {
-    SearchView search_view;
+    private SearchView searchView;
     public interface listener_text
     {
         void on_result(String search_string);
@@ -30,7 +33,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        SearchView searchView = view.findViewById(R.id.Search_view);
+        searchView = view.findViewById(R.id.Search_view);
         searchView.setOnQueryTextListener(this);
         return view;
     }

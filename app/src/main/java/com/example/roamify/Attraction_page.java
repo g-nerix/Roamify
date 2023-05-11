@@ -52,11 +52,11 @@ public class Attraction_page extends AppCompatActivity
         String contact = intent.getStringExtra("contact");
         String price = String.valueOf(intent.getIntExtra("price",0));
         String place = intent.getStringExtra("place");
-        rateTxt.setText(Integer.toString(rating));
+        rateTxt.setText("Rating:  "+rating);
         nameTxt.setText(name);
         contactTxt.setText(contact);
         locTxt.setText(loc);
-        pricingTxt.setText(price);
+        pricingTxt.setText("₹"+price);
         ArrayList<String> checked_name_list = (ArrayList<String>) intent.getSerializableExtra("name_list");
         ArrayList<Integer> checked_price_list = (ArrayList<Integer>) intent.getSerializableExtra("price_list");
 

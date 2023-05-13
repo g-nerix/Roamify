@@ -37,7 +37,7 @@ public class Attraction_page extends AppCompatActivity
         locTxt=findViewById(R.id.locTxt);
         image=findViewById(R.id.pic);
         box =findViewById(R.id.checkBox);
-        ImageView map = findViewById(R.id.mapButton);
+        Button map = findViewById(R.id.mapButton);
 
         Intent intent=getIntent();
         String name = intent.getStringExtra("name");
@@ -52,7 +52,7 @@ public class Attraction_page extends AppCompatActivity
         String contact = intent.getStringExtra("contact");
         String price = String.valueOf(intent.getIntExtra("price",0));
         String place = intent.getStringExtra("place");
-        rateTxt.setText("Rating:  "+rating);
+        rateTxt.setText(String.valueOf(rating));
         nameTxt.setText(name);
         contactTxt.setText(contact);
         locTxt.setText(loc);

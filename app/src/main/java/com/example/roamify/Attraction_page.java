@@ -22,6 +22,7 @@ public class Attraction_page extends AppCompatActivity
     TextView nameTxt, pricingTxt, rateTxt, contactTxt, locTxt;
     ImageView image;
     CheckBox box;
+    private Button homebtn;
 
 
     @Override
@@ -38,6 +39,15 @@ public class Attraction_page extends AppCompatActivity
         image=findViewById(R.id.pic);
         box =findViewById(R.id.checkBox);
         Button map = findViewById(R.id.mapButton);
+        homebtn = findViewById(R.id.hbtn);
+
+        homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),Second_Page.class);
+                context.startActivity(i);
+            }
+        });
 
         Intent intent=getIntent();
         String name = intent.getStringExtra("name");

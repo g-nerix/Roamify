@@ -2,7 +2,9 @@ package com.example.roamify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -23,19 +25,13 @@ public class MainActivity extends AppCompatActivity
     private String country;
     private double latitude, longitude;
 
-
-    /// Sarthak's stupidity starts
     FirebaseAuth auth;
     FirebaseUser user;
 
-    /// Sarthak's stupidity ends
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        // Sarthak's stupidity
         auth= FirebaseAuth.getInstance();
         user= auth.getCurrentUser();
 
@@ -48,29 +44,22 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                startActivity(new Intent(getApplicationContext(), Second_Page.class));
-////                Intent i = new Intent(MainActivity.this, HomeScreen.class);
-////                startActivity(i);
-                finish();
-//
+//                startActivity(new Intent(getApplicationContext(), Second_Page.class));
+//                finish();
                 if( user==null){
-//                    profile.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-                            startActivity(new Intent(getApplicationContext(), Login.class));
-                            finish();
-//                        }
-//                    });
+                    startActivity(new Intent(getApplicationContext(), Login.class));
+                    finish();
                 }
                 else{
-//                    profile.setText(user.getEmail().substring(0,5));
-//                    profile.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-                            startActivity(new Intent(getApplicationContext(), Second_Page.class));
-                            finish();
-//                        }
-//                    });
+                    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                    if (cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected()) {
+                        startActivity(new Intent(getApplicationContext(), Second_Page.class));
+                        finish();
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), noInternet.class));
+                        finish();
+                    }
                 }
             }
         }, 2000);

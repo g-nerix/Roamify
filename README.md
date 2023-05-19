@@ -26,6 +26,17 @@ bash
   3. Build and run the app on your Android device or emulator.
 
 ## Feedback and Contributions
-We welcome any feedback, suggestions, or bug reports from our users. If you encounter any issues or have ideas for improvements, please open an issue on the GitHub repository.
+We welcome any feedback, suggestions, or bug reports from our users. If you encounter any issues or have ideas for improvements, [please open an issue](https://github.com/g-nerix/Roamify/issues) on the GitHub repository.
 
-If you would like to contribute to the project, feel free to fork the repository and submit a pull request with your changes.
+If you would like to contribute to the project, feel free to [fork the repository](https://github.com/g-nerix/Roamify/fork) and submit a pull request with your changes.
+
+## License
+This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as per the terms of the license.
+
+## Acknowledgments
+We would like to express our gratitude to the open-source community for their valuable contributions and the resources that have helped make this app possible.
+
+## Contact
+If you have any further questions, you can reach out to us at appstronauts.tour.guide.app@gmail.com.
+
+Happy travels and enjoy using the Travel Companion App!

@@ -20,7 +20,7 @@ Welcome to the Travel Companion App! Our app is designed to provide you with all
 ![alt text](/Screenshot/Picture2.png)
 ![alt text](/Screenshot/Picture3.png)
 ![alt text](/Screenshot/Picture4.png)
-![alt text](/Screenshot/Picture5.png)
+<!-- ![alt text](/Screenshot/Picture5.png) -->
 
 ## Installation
   1. Clone the repository to your local machine using the following command:

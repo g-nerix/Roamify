@@ -15,11 +15,12 @@ Welcome to the Travel Companion App! Our app is designed to provide you with all
   - Real-Time Updates: Our app provides real-time updates on opening hours, special events, and any changes that might occur during your visit. Stay informed and make the most of your time.
 
 ## Screenshots
+
 ## Installation
   1. Clone the repository to your local machine using the following command:
 bash
 
-    git clone https://github.com/your-username/travel-companion-app.git
+    git clone https://github.com/g-nerix/Roamify
   2. Open the project in Android Studio.
 
   3. Build and run the app on your Android device or emulator.
